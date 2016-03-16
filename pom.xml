@@ -15,7 +15,7 @@
     <spring.version>3.2.2.RELEASE</spring.version>
     <resteasy.version>2.3.5.Final</resteasy.version>
     <jetty.version>8.1.9.v20130131</jetty.version>
-    <brave.version>3.1.0</brave.version>
+    <brave.version>3.5.0</brave.version>
   </properties>
   
   <dependencies>
@@ -44,8 +44,13 @@
     -->
     <dependency>
         <groupId>com.github.kristofa</groupId>
-        <artifactId>brave-spancollector-scribe</artifactId>
-        <version>${brave.version}</version>
+        <artifactId>brave-zipkin-spancollector</artifactId>
+        <version>3.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.github.kristofa</groupId>
+        <artifactId>brave-spancollector-http</artifactId>
+        <version>3.5.0</version>
     </dependency>
     <dependency>
         <groupId>com.github.kristofa</groupId>

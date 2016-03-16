@@ -86,6 +86,7 @@ public class ITRestEasyExample {
         final ClientResponse<Void> response = (ClientResponse<Void>)client.a();
         try {
             assertEquals(200, response.getStatus());
+            Thread.sleep(1000);
         } finally {
             response.releaseConnection();
         }
