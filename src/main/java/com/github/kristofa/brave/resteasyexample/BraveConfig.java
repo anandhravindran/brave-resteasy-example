@@ -17,7 +17,7 @@ public class BraveConfig {
 	@Bean
 	@Scope(value = "singleton")
 	public Brave brave() {
-		Brave.Builder builder = new Brave.Builder();
+		Brave.Builder builder = new Brave.Builder("OrderMock");
 		// return builder.spanCollector(new
 		// KafkaSpanCollector("192.168.99.100:9092"))
 		// return builder.spanCollector(new

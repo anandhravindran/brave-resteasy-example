@@ -31,9 +31,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	@Path("/placeorder")
+	@Path("/orderWorkflow")
 	@GET
-	public Response placeorder() throws InterruptedException,
+	public Response orderWorkflow() throws InterruptedException,
 			ClientProtocolException, IOException {
 
 		final Random random = new Random();
@@ -41,38 +41,38 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 
 		final RestEasyExampleResource client = ProxyFactory.create(
 				RestEasyExampleResource.class,
-				"http://localhost:8080/OrderFlowMock");
+				"http://localhost:8080/");
 		
-		ClientResponse<Void> response = (ClientResponse<Void>) client.b();
+		ClientResponse<Void> response = (ClientResponse<Void>) client.placeOrder();
 		response.releaseConnection();
 
-		response = (ClientResponse<Void>) client.c();
+		response = (ClientResponse<Void>) client.oms();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.d();
+		response = (ClientResponse<Void>) client.dcOrDsv();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.e();
+		response = (ClientResponse<Void>) client.ship();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.f();
+		response = (ClientResponse<Void>) client.fedexOrWalmart();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.g();
+		/*response = (ClientResponse<Void>) client.g();
 		response.releaseConnection();
 		
 		response = (ClientResponse<Void>) client.h();
 		response.releaseConnection();
 
 		response = (ClientResponse<Void>) client.i();
-		response.releaseConnection();
+		response.releaseConnection();*/
 		return Response.ok().build();
 	}
 
 	@Override
-	@Path("/b")
+	@Path("/placeOrder")
 	@GET
-	public Response b() throws InterruptedException {
+	public Response placeOrder() throws InterruptedException {
 
 		final Random random = new Random();
 		Thread.sleep(random.nextInt(1000));
@@ -81,9 +81,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	}
 
 	@Override
-	@Path("/c")
+	@Path("/oms")
 	@GET
-	public Response c() throws InterruptedException {
+	public Response oms() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(random.nextInt(1000));
 
@@ -91,9 +91,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	}
 
 	@Override
-	@Path("/d")
+	@Path("/dcOrDsv")
 	@GET
-	public Response d() throws InterruptedException {
+	public Response dcOrDsv() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(random.nextInt(1000));
 
@@ -101,9 +101,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	}
 
 	@Override
-	@Path("/e")
+	@Path("/ship")
 	@GET
-	public Response e() throws InterruptedException {
+	public Response ship() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(1000 + random.nextInt(1000));
 
@@ -112,15 +112,15 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Path("/f")
+	@Path("/fedexOrWalmart")
 	@GET
-	public Response f() throws InterruptedException {
+	public Response fedexOrWalmart() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(2000 + random.nextInt(1000));
 		
 		final RestEasyExampleResource client = ProxyFactory.create(
 				RestEasyExampleResource.class,
-				"http://localhost:8080/OrderFlowMock");
+				"http://localhost:8080/");
 		
 		ClientResponse<Void> response = (ClientResponse<Void>) client.g();
 		response.releaseConnection();

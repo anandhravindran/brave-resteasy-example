@@ -16,29 +16,29 @@ import org.apache.http.client.ClientProtocolException;
 @Path("/order")
 public interface RestEasyExampleResource {
 
-    @Path("/placeorder")
+    @Path("/orderWorkflow")
     @GET
-    public Response placeorder() throws InterruptedException, ClientProtocolException, IOException;
+    public Response orderWorkflow() throws InterruptedException, ClientProtocolException, IOException;
 
-    @Path("/b")
+    @Path("/placeOrder")
     @GET
-    public Response b() throws InterruptedException;
+    public Response placeOrder() throws InterruptedException;
 
-    @Path("/c")
+    @Path("/oms")
     @GET
-    public Response c() throws InterruptedException;
+    public Response oms() throws InterruptedException;
     
-    @Path("/d")
+    @Path("/dcOrDsv")
     @GET
-    public Response d() throws InterruptedException;
+    public Response dcOrDsv() throws InterruptedException;
     
-    @Path("/e")
+    @Path("/ship")
     @GET
-    public Response e() throws InterruptedException;
+    public Response ship() throws InterruptedException;
     
-    @Path("/f")
+    @Path("/fedexOrWalmart")
     @GET
-    public Response f() throws InterruptedException;
+    public Response fedexOrWalmart() throws InterruptedException;
     
     @Path("/g")
     @GET
