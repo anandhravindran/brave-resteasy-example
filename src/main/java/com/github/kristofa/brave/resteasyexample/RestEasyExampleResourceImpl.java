@@ -49,13 +49,13 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 		response = (ClientResponse<Void>) client.oms();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.dcOrDsv();
+		response = (ClientResponse<Void>) client.dc();
 		response.releaseConnection();
 		
 		response = (ClientResponse<Void>) client.ship();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.fedexOrWalmart();
+		response = (ClientResponse<Void>) client.fedex();
 		response.releaseConnection();
 		
 		/*response = (ClientResponse<Void>) client.g();
@@ -91,9 +91,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	}
 
 	@Override
-	@Path("/dcOrDsv")
+	@Path("/dc")
 	@GET
-	public Response dcOrDsv() throws InterruptedException {
+	public Response dc() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(random.nextInt(1000));
 
@@ -112,9 +112,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Path("/fedexOrWalmart")
+	@Path("/fedex")
 	@GET
-	public Response fedexOrWalmart() throws InterruptedException {
+	public Response fedex() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(2000 + random.nextInt(1000));
 		
@@ -122,19 +122,19 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 				RestEasyExampleResource.class,
 				"http://localhost:8080/");
 		
-		ClientResponse<Void> response = (ClientResponse<Void>) client.g();
+		ClientResponse<Void> response = (ClientResponse<Void>) client.inflight();
 		response.releaseConnection();
 		
-		response = (ClientResponse<Void>) client.h();
+		response = (ClientResponse<Void>) client.inTruck();
 		response.releaseConnection();
 
 		return Response.ok().build();
 	}
 
 	@Override
-	@Path("/g")
+	@Path("/inflight")
 	@GET
-	public Response g() throws InterruptedException {
+	public Response inflight() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(3000 + random.nextInt(1000));
 
@@ -142,9 +142,9 @@ public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 	}
 
 	@Override
-	@Path("/h")
+	@Path("/inTruck")
 	@GET
-	public Response h() throws InterruptedException {
+	public Response inTruck() throws InterruptedException {
 		final Random random = new Random();
 		Thread.sleep(random.nextInt(1000));
 

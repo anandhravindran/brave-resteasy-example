@@ -28,25 +28,25 @@ public interface RestEasyExampleResource {
     @GET
     public Response oms() throws InterruptedException;
     
-    @Path("/dcOrDsv")
+    @Path("/dc")
     @GET
-    public Response dcOrDsv() throws InterruptedException;
+    public Response dc() throws InterruptedException;
     
     @Path("/ship")
     @GET
     public Response ship() throws InterruptedException;
     
-    @Path("/fedexOrWalmart")
+    @Path("/fedex")
     @GET
-    public Response fedexOrWalmart() throws InterruptedException;
+    public Response fedex() throws InterruptedException;
     
-    @Path("/g")
+    @Path("/inflight")
     @GET
-    public Response g() throws InterruptedException;
+    public Response inflight() throws InterruptedException;
     
-    @Path("/h")
+    @Path("/inTruck")
     @GET
-    public Response h() throws InterruptedException;
+    public Response inTruck() throws InterruptedException;
     
     @Path("/i")
     @GET
