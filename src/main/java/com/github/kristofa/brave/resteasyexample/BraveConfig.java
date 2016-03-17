@@ -2,21 +2,14 @@ package com.github.kristofa.brave.resteasyexample;
 
 import com.github.kristofa.brave.Brave;
 import com.github.kristofa.brave.EmptySpanCollectorMetricsHandler;
-import com.github.kristofa.brave.FixedSampleRateTraceFilter;
-import com.github.kristofa.brave.LoggingSpanCollector;
-import com.github.kristofa.brave.TraceFilter;
-import com.github.kristofa.brave.http.DefaultSpanNameProvider;
+import com.github.kristofa.brave.http.HttpRequest;
 import com.github.kristofa.brave.http.HttpSpanCollector;
 import com.github.kristofa.brave.http.ServiceNameProvider;
 import com.github.kristofa.brave.http.SpanNameProvider;
 import com.github.kristofa.brave.http.StringServiceNameProvider;
-import com.github.kristofa.brave.zipkin.ZipkinSpanCollector;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-
-import java.util.Arrays;
 
 @Configuration
 public class BraveConfig {
@@ -41,12 +34,19 @@ public class BraveConfig {
 	@Bean
 	@Scope(value = "singleton")
 	public ServiceNameProvider serviceNameProvider() {
-		return new StringServiceNameProvider("test_service");
+		return new StringServiceNameProvider("Order");
 	}
 
 	@Bean
 	@Scope(value = "singleton")
 	public SpanNameProvider spanNameProvider() {
-		return new DefaultSpanNameProvider();
+		return new SpanNameProvider(){
+
+			@Override
+			public String spanName(HttpRequest paramHttpRequest) {
+				return paramHttpRequest.getUri().getPath();
+			}
+			
+		};
 	}
 }

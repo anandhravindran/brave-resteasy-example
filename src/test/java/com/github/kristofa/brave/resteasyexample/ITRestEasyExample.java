@@ -52,7 +52,7 @@ public class ITRestEasyExample {
 
         final WebAppContext context = new WebAppContext();
         context.setServer(server);
-        context.setContextPath("/RestEasyTest");
+        context.setContextPath("/OrderFlowMock");
         context.setWar("src/main/webapp");
 
         server.setHandler(context);
@@ -80,10 +80,10 @@ public class ITRestEasyExample {
         // we Spring will scan com.github.kristofa.brave package. This is the package containing our client interceptor
         // in module brave-resteasy-spring-module which is on our class path.
         final RestEasyExampleResource client =
-            ProxyFactory.create(RestEasyExampleResource.class, "http://localhost:8080/RestEasyTest");
+            ProxyFactory.create(RestEasyExampleResource.class, "http://localhost:8080/OrderFlowMock");
 
         @SuppressWarnings("unchecked")
-        final ClientResponse<Void> response = (ClientResponse<Void>)client.a();
+        final ClientResponse<Void> response = (ClientResponse<Void>)client.placeorder();
         try {
             assertEquals(200, response.getStatus());
             Thread.sleep(1000);

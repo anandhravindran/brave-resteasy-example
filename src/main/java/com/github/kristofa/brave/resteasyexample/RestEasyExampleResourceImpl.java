@@ -18,45 +18,147 @@ import org.springframework.stereotype.Repository;
  * @author kristof
  */
 @Repository
-@Path("/brave-resteasy-example")
+@Path("/order")
 public class RestEasyExampleResourceImpl implements RestEasyExampleResource {
 
-    /**
-     * A will call B.
-     * 
-     * @return
-     * @throws InterruptedException
-     * @throws ClientProtocolException
-     * @throws IOException
-     */
-    @Override
-    @Path("/a")
-    @GET
-    public Response a() throws InterruptedException, ClientProtocolException, IOException {
+	/**
+	 * A will call B.
+	 * 
+	 * @return
+	 * @throws InterruptedException
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	@Path("/placeorder")
+	@GET
+	public Response placeorder() throws InterruptedException,
+			ClientProtocolException, IOException {
 
-        final Random random = new Random();
-        Thread.sleep(random.nextInt(1000));
+		final Random random = new Random();
+		Thread.sleep(random.nextInt(1000));
 
-        final RestEasyExampleResource client =
-            ProxyFactory.create(RestEasyExampleResource.class, "http://localhost:8080/RestEasyTest");
-        @SuppressWarnings("unchecked")
-        final ClientResponse<Void> response = (ClientResponse<Void>)client.b();
-        try {
-            return Response.status(response.getStatus()).build();
-        } finally {
-            response.releaseConnection();
-        }
-    }
+		final RestEasyExampleResource client = ProxyFactory.create(
+				RestEasyExampleResource.class,
+				"http://localhost:8080/OrderFlowMock");
+		
+		ClientResponse<Void> response = (ClientResponse<Void>) client.b();
+		response.releaseConnection();
 
-    @Override
-    @Path("/b")
-    @GET
-    public Response b() throws InterruptedException {
+		response = (ClientResponse<Void>) client.c();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.d();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.e();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.f();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.g();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.h();
+		response.releaseConnection();
 
-        final Random random = new Random();
-        Thread.sleep(random.nextInt(1000));
+		response = (ClientResponse<Void>) client.i();
+		response.releaseConnection();
+		return Response.ok().build();
+	}
 
-        return Response.ok().build();
-    }
+	@Override
+	@Path("/b")
+	@GET
+	public Response b() throws InterruptedException {
+
+		final Random random = new Random();
+		Thread.sleep(random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/c")
+	@GET
+	public Response c() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/d")
+	@GET
+	public Response d() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/e")
+	@GET
+	public Response e() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(1000 + random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Path("/f")
+	@GET
+	public Response f() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(2000 + random.nextInt(1000));
+		
+		final RestEasyExampleResource client = ProxyFactory.create(
+				RestEasyExampleResource.class,
+				"http://localhost:8080/OrderFlowMock");
+		
+		ClientResponse<Void> response = (ClientResponse<Void>) client.g();
+		response.releaseConnection();
+		
+		response = (ClientResponse<Void>) client.h();
+		response.releaseConnection();
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/g")
+	@GET
+	public Response g() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(3000 + random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/h")
+	@GET
+	public Response h() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(random.nextInt(1000));
+
+		return Response.ok().build();
+	}
+
+	@Override
+	@Path("/i")
+	@GET
+	public Response i() throws InterruptedException {
+		final Random random = new Random();
+		Thread.sleep(5000 + random.nextInt(1000));
+
+		return Response.ok().build();
+	}
 
 }
